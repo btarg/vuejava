@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <h1>Your Vue.js + Spring Boot App</h1>
+    <h1>Vue.js + Vite + Javalin + Gradle</h1>
     <input v-model="argument" placeholder="Enter argument" />
     <button @click="invokeJavaFunction">Invoke Java Function</button>
   </div>
@@ -21,7 +21,7 @@ export default {
     invokeJavaFunction() {
       axios.post('/api/invokeJavaFunction', { argument: this.argument })
           .then(response => {
-            alert('Java function invoked successfully: ' + response.data);
+            alert('Success: ' + response.data);
           })
           .catch(error => {
             alert('Error invoking Java function: ' +  error);
