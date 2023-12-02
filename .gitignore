@@ -1,0 +1,6 @@
+.idea/*
+.gradle/*
+backend/.gradle
+*.iml
+backend/src/main/resources/static
+backend/build
