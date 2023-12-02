@@ -1,6 +1,4 @@
 plugins {
-    id("org.springframework.boot") version "2.+"
-    id("io.spring.dependency-management") version "1.0+"
     id("java")
 }
 
@@ -12,7 +10,9 @@ repositories {
 }
 
 dependencies {
-    implementation("org.springframework.boot:spring-boot-starter-web")
+    implementation("io.javalin:javalin:5.+")
+    implementation("org.slf4j:slf4j-api:1.+")
+    implementation("ch.qos.logback:logback-classic:1.+")
 }
 
 tasks.register("buildFrontend") {
