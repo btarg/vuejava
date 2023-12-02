@@ -17,21 +17,22 @@ dependencies {
 
 tasks.register("buildFrontend") {
     doLast {
-        // Execute npm run build
+        // Execute npm install and npm run build
         project.exec {
-            executable ("C:/Program Files/nodejs/npm.cmd") // Specify the full path to npm
-            workingDir("frontend") // Set the working directory to the frontend module
-            commandLine("npm.cmd", "run", "build")
+            workingDir("frontend")
+            commandLine("C:/Program Files/nodejs/npm.cmd", "install")
+            commandLine("C:/Program Files/nodejs/npm.cmd", "run", "build")
         }
 
         // Copy the contents of the dist directory to src/main/resources/static
-        copy {
+        project.copy {
             from("frontend/dist")
             into("src/main/resources/static")
         }
     }
 }
 
+
 tasks.build {
-    dependsOn("buildFrontend") // Make buildFrontend task a dependency of the build task
+    dependsOn("buildFrontend")
 }
