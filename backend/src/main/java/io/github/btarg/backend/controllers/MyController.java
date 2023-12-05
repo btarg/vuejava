@@ -1,6 +1,6 @@
 package io.github.btarg.backend.controllers;
 
-import io.github.btarg.backend.MyCustomObject;
+import io.github.btarg.backend.objects.MyCustomObject;
 import io.javalin.http.Handler;
 
 public class MyController {

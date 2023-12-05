@@ -1,4 +1,4 @@
-package io.github.btarg.backend;
+package io.github.btarg.backend.objects;
 
 public class MyCustomObject {
 
