@@ -11,8 +11,8 @@ repositories {
 
 dependencies {
     implementation("io.javalin:javalin:5.+")
-    implementation("org.slf4j:slf4j-api:1.+")
-    implementation("ch.qos.logback:logback-classic:1.+")
+    implementation("org.slf4j:slf4j-simple:2.+")
+    implementation("com.fasterxml.jackson.core:jackson-databind:2.+")
 }
 
 tasks.register("buildFrontend") {

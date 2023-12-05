@@ -1,48 +1,46 @@
+<!-- App.vue -->
 <template>
   <div id="app">
-    <h1>Vue.js + Vite + Javalin + Gradle</h1>
-    <input v-model="argument" placeholder="Enter argument" />
-    <button @click="invokeJavaFunction">Invoke Java Function</button>
+    <h1>My Custom Object Form</h1>
+    <form @submit.prevent="submitForm">
+      <label for="testString">Test String:</label>
+      <input v-model="myCustomObject.testString" type="text" id="testString" />
+
+      <label for="testInt">Test Integer:</label>
+      <input v-model.number="myCustomObject.testInt" type="number" id="testInt" />
+
+      <button type="submit">Submit</button>
+    </form>
   </div>
 </template>
 
-
 <script>
-// Import the necessary libraries
-import axios from 'axios';
+import axios from "axios";
 
 export default {
   data() {
     return {
-      argument: 'YourArgumentValue' // Set a default value or bind to a data property in your component
+      myCustomObject: {
+        testString: '',
+        testInt: null,
+      },
     };
   },
   methods: {
-    invokeJavaFunction() {
-      axios.post('/api/invokeJavaFunction', { argument: this.argument })
+    submitForm() {
+      // Send the MyCustomObject to the backend
+      axios.post('/api/receiveObject', this.myCustomObject)
           .then(response => {
-            alert('Success: ' + response.data);
+            console.log('Object submitted successfully:', response.data);
           })
           .catch(error => {
-            alert('Error invoking Java function: ' +  error);
+            console.error('Error submitting object:', error);
           });
-    }
-  }
+    },
+  },
 };
-
 </script>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-
-button {
-  padding: 10px 20px;
-  font-size: 16px;
-  cursor: pointer;
-}
+<style scoped>
+/* Add your custom styles here */
 </style>
