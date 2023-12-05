@@ -1,5 +1,8 @@
+import com.github.gradle.node.npm.task.NpmTask
+
 plugins {
     id("java")
+    id("com.github.node-gradle.node") version "7.0.1"
 }
 
 group = "io.github.btarg"
@@ -15,15 +18,19 @@ dependencies {
     implementation("com.fasterxml.jackson.core:jackson-databind:2.+")
 }
 
-tasks.register("buildFrontend") {
-    doLast {
-        // Execute npm install and npm run build
-        project.exec {
-            workingDir("frontend")
-            commandLine("C:/Program Files/nodejs/npm.cmd", "install")
-            commandLine("C:/Program Files/nodejs/npm.cmd", "run", "build")
-        }
+node {
+    download.set(false)
+    nodeProjectDir = file("frontend")
+}
 
+tasks.register<NpmTask>("buildFrontend") {
+    dependsOn("npmInstall")
+    inputs.dir("frontend")
+    inputs.dir(fileTree("frontend/node_modules").exclude(".cache"))
+    outputs.dir("frontend/dist")
+    args.set(listOf("run", "build"))
+
+    doLast {
         // Copy the contents of the dist directory to src/main/resources/static
         project.copy {
             from("frontend/dist")
