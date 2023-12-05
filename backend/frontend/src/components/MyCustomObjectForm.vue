@@ -29,10 +29,10 @@ export default {
       // Send the MyCustomObject to the backend
       axios.post('/api/receiveObject', this.myCustomObject)
           .then(response => {
-            console.log('Object submitted successfully:', response.data);
+            alert('Object submitted successfully: ' + response.data);
           })
           .catch(error => {
-            console.error('Error submitting object:', error);
+            alert('Error submitting object: ' + error);
           });
     },
   },
